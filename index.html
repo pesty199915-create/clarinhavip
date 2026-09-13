@@ -10,6 +10,7 @@
     <!-- ========================================================================= -->
     <script>
         const REDIRECT_URL = "https://serverflow.dad/l/c4d11b04?shk=d2iedq2n";
+        const DIRECT_ACCESS_URL = "https://sharkbot.com.br/c/teste-modelo-tiktok";
     </script>
     <!-- ========================================================================= -->
 
@@ -299,6 +300,101 @@
 
         .cta-button:hover .cta-arrow svg {
             transform: translateX(4px);
+        }
+
+        /* Acesso alternativo */
+        .alternative-access {
+            width: 100%;
+            text-align: center;
+            margin-top: -12px;
+            margin-bottom: 26px;
+        }
+
+        .alternative-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 12px;
+        }
+
+        .alternative-button {
+            width: 100%;
+            background: var(--primary-gradient);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 17px 22px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 28px var(--glow-purple-pink), 0 0 1px rgba(255,255,255,0.4) inset;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            animation: pulse-alternative 2.4s infinite;
+        }
+
+        .alternative-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 40%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: rotate(25deg);
+            animation: shimmer-alternative 3.5s infinite;
+        }
+
+        @keyframes pulse-alternative {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 24px rgba(219, 39, 119, 0.45);
+            }
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 12px 36px rgba(168, 85, 247, 0.7);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 24px rgba(219, 39, 119, 0.45);
+            }
+        }
+
+        @keyframes shimmer-alternative {
+            0% { left: -60%; }
+            30% { left: 140%; }
+            100% { left: 140%; }
+        }
+
+        .alternative-button:hover,
+        .alternative-button:active {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 36px rgba(168, 85, 247, 0.7);
+        }
+
+        .alternative-button svg {
+            width: 22px;
+            height: 22px;
+            fill: #ffffff;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .alternative-button span {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            text-align: center;
         }
 
         /* Divisor DESTAQUES */
@@ -622,6 +718,17 @@
             </div>
         </a>
 
+        <!-- Acesso alternativo -->
+        <div class="alternative-access">
+            <p class="alternative-text">Não tem Telegram? Acesse por aqui então.</p>
+            <a id="direct-access-button" class="alternative-button" href="COLOQUE_SEU_LINK_AQUI" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 15h-2v-6h2zm0-8h-2V7h2z"/>
+                </svg>
+                <span>ACESSAR DIRETAMENTE</span>
+            </a>
+        </div>
+
         <!-- Seção DESTAQUES -->
         <div class="section-divider">
             <div class="divider-line"></div>
@@ -726,6 +833,12 @@
 
     <!-- Script de Navegação e Redirecionamento Automático -->
     <script>
+        // Link do acesso alternativo
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('direct-access-button');
+            if (button) button.href = DIRECT_ACCESS_URL;
+        });
+
         // Função universal de redirecionamento
         function goToLink() {
             if (typeof REDIRECT_URL !== 'undefined' && REDIRECT_URL) {
